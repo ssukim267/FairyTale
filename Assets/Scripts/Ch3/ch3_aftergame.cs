@@ -94,6 +94,6 @@ public class ch3_aftergame : MonoBehaviour
 
     void OnGameStartButtonClicked()
     {
-        SceneManager.LoadScene("ch2"); // 이동할 씬 이름을 적어주세요
+        SceneManager.LoadScene("ch4"); // 이동할 씬 이름을 적어주세요
     }
 }

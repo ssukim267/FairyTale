@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DemoScene_Playable_Snow.unity
     guid: c8e95f34867c144859d925764b963f5e
+  - enabled: 1
+    path: Assets/Scenes/ch3_beforegame.unity
+    guid: f2fbb1b76ec9a4c4f8ce041af89e9763
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: a2db670446fcdb746a7ebb4c0f12c8b9, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 5d817e50b5fd9bf4dbb157e40cfb64a3, type: 2}
