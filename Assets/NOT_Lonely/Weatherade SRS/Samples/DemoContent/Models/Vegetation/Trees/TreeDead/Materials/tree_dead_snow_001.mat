@@ -24,7 +24,6 @@ Material:
   m_Shader: {fileID: 4800000, guid: 6f965386d564397448b33118a85d0f86, type: 3}
   m_ValidKeywords:
   - _COVERAGE_ON
-  - _NORMALMAP
   - _SPARKLE_ON
   - _SPARKLE_TEX_LS
   - _SPARKLE_TEX_SS

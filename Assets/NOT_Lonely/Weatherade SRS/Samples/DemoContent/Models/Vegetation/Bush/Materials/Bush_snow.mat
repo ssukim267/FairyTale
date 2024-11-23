@@ -12,7 +12,6 @@ Material:
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _COVERAGE_ON
-  - _NORMALMAP
   - _RENDERING_CUTOUT
   - _SPARKLE_ON
   - _SPARKLE_TEX_LS
