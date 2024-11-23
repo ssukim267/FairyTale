@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DemoScene_Playable_Snow.unity
     guid: c8e95f34867c144859d925764b963f5e
   m_configObjects:
