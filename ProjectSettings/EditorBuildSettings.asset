@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DemoScene_Playable_Snow.unity
     guid: c8e95f34867c144859d925764b963f5e
   - enabled: 1
+    path: Assets/Scenes/intro.unity
+    guid: 4e3b95907d64dc049a155733b3eb1253
+  - enabled: 1
     path: Assets/Scenes/ch1.unity
     guid: 66daeb4ac446a4ad7a879029db6f15ff
   - enabled: 1
