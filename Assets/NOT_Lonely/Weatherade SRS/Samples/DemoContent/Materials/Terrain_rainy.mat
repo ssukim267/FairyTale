@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Terrain_rainy
+  m_Shader: {fileID: 4800000, guid: 49922eb2f0e1aad478ed3e2f2fec4e85, type: 3}
+  m_ValidKeywords:
+  - _COVERAGE_ON
+  - _DRIPS_ON
+  - _RIPPLES_ON
+  - _STOCHASTIC_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    SRSGroupName: Terrain
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlbedoLOD:
+        m_Texture: {fileID: 2800000, guid: c795fd22297c55046bcc43c6159a8692, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageSplat:
+        m_Texture: {fileID: 2800000, guid: c767aab491e8ad547887e7571f64797e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalLOD:
+        m_Texture: {fileID: 2800000, guid: 1eec5d09831225347b505b3b2b476a4d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PaintedMask:
+        m_Texture: {fileID: 2800000, guid: 059d2f4fa0fd6a6408842da4e1e24ac5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PrimaryMasks:
+        m_Texture: {fileID: 2800000, guid: dfb29d68ab543ff45b175f6f0c9cf43d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RipplesTex:
+        m_Texture: {fileID: 18700000, guid: 7bdaba3277864f646895acd23c573a50, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainHolesTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BlendByNormalsPower: 1
+    - _BlendByNormalsPowerOverride: 0
+    - _BlendByNormalsStrength: 2
+    - _BlendByNormalsStrengthOverride: 0
+    - _BumpScale: 1
+    - _Coverage: 1
+    - _CoverageAreaBias: 0.02
+    - _CoverageAreaBiasOverride: 1
+    - _CoverageAreaFalloffHardness: 0.7
+    - _CoverageAreaMaskRange: 1
+    - _CoverageAreaMaskRangeOverride: 0
+    - _CoverageLeakReduction: 0
+    - _CoverageLeakReductionOverride: 1
+    - _CoverageOverride: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DistanceFadeFalloff: 50
+    - _DistanceFadeStart: 25
+    - _DistortionAmount: 0.02
+    - _DistortionAmountOverride: 0
+    - _DistortionTiling: 2
+    - _DistortionTilingOverride: 0
+    - _Drips: 1
+    - _DripsIntensity: 5
+    - _DripsIntensityOverride: 0
+    - _DripsOverride: 0
+    - _DripsSpeed: 0.15
+    - _DripsSpeedOverride: 0
+    - _DripsTilingOverride: 0
+    - _DstBlend: 0
+    - _EmissionMaskingOverride: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _InstancingEnabled: 1
+    - _MapID: 0
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _PaintableCoverage: 0
+    - _PaintableCoverageOverride: 0
+    - _Parallax: 0.02
+    - _PrecipitationDirOffset: 0
+    - _PrecipitationDirOffsetOverride: 0
+    - _PrecipitationDirRangeOverride: 0
+    - _PrimaryMasksOverride: 0
+    - _PuddlesAmount: 0.896
+    - _PuddlesAmountOverride: 1
+    - _PuddlesBlendContrast: 0
+    - _PuddlesBlendContrastOverride: 1
+    - _PuddlesBlendStrength: 1
+    - _PuddlesBlendStrengthOverride: 1
+    - _PuddlesColorOverride: 0
+    - _PuddlesMult: 0.8
+    - _PuddlesMultOverride: 0
+    - _PuddlesRangeOverride: 0
+    - _PuddlesSlope: 0.005
+    - _PuddlesSlopeOverride: 0
+    - _PuddlesTiling: 0.5
+    - _PuddlesTilingOverride: 0
+    - _Ripples: 1
+    - _RipplesAmount: 3
+    - _RipplesAmountOverride: 0
+    - _RipplesFPS: 30
+    - _RipplesFPSOverride: 0
+    - _RipplesFramesCount: 128
+    - _RipplesFramesCountOverride: 1
+    - _RipplesIntensity: 0.5
+    - _RipplesIntensityOverride: 0
+    - _RipplesOverride: 0
+    - _RipplesTexOverride: 0
+    - _RipplesTiling: 1
+    - _RipplesTilingOverride: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SpotsAmount: 0.99
+    - _SpotsAmountOverride: 0
+    - _SpotsIntensity: 5
+    - _SpotsIntensityOverride: 0
+    - _SrcBlend: 1
+    - _Stochastic: 1
+    - _StochasticOverride: 1
+    - _TilingMultiplier: 1
+    - _UVSec: 0
+    - _WetColorOverride: 0
+    - _WetnessAmount: 0.4
+    - _WetnessAmountOverride: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CoverageAreaMaskRange: {r: 0.308, g: 0.661, b: 0, a: 0}
+    - _DripsTiling: {r: 2, g: 1, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _PrecipitationDirRange: {r: 0, g: 1, b: 0, a: 0}
+    - _PuddlesRange: {r: 0.55, g: 1, b: 0, a: 0}
+    - _WetColor: {r: 0.028034888, g: 0.15939029, b: 0.2830189, a: 1}
+  m_BuildTextureStacks: []

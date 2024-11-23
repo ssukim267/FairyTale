@@ -1,0 +1,293 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Roof_rain
+  m_Shader: {fileID: 4800000, guid: f991bab50fb19d345bd3ba0af74434e0, type: 3}
+  m_ValidKeywords:
+  - _COVERAGE_ON
+  - _DRIPS_ON
+  - _NORMALMAP
+  - _RIPPLES_ON
+  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_InvalidKeywords:
+  - _DISPLACEMENT_ON
+  - _SPARKLE_ON
+  - _SPARKLE_TEX_LS
+  - _SPARKLE_TEX_SS
+  - _TRACE_DETAIL
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    SRSGroupName: Opaque
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlbedoLOD:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 0b643ad418c6b7249967993e4a73c638, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageTex0:
+        m_Texture: {fileID: 2800000, guid: d1e56c8ed5a0d0e478b7731cd7c1ba76, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4d716b3dc79055a45a5c95d6b69501fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalLOD:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PaintedMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PaintedMaskNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SparkleTex:
+        m_Texture: {fileID: 2800000, guid: 21921935555788b49b1942a7097bdabe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainHolesTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TraceDetailTex:
+        m_Texture: {fileID: 2800000, guid: 50ac780d28ff21a46a890f77fd0e8c65, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaToCoverage: 0
+    - _BaseCoverageNormalsBlend: 0.2588235
+    - _BaseCoverageNormalsBlendOverride: 0
+    - _BlendByNormalsPower: -0
+    - _BlendByNormalsPowerOverride: 0
+    - _BlendByNormalsStrength: 5
+    - _BlendByNormalsStrengthOverride: 0
+    - _BumpScale: 1
+    - _CovMasks0_triBlendContrast: 0
+    - _Coverage: 1
+    - _CoverageAmount: 0.75
+    - _CoverageAmountOverride: 0
+    - _CoverageAreaBias: 0.0265
+    - _CoverageAreaBiasOverride: 0
+    - _CoverageAreaFalloffHardness: 0.75
+    - _CoverageAreaMaskRange: 1
+    - _CoverageAreaMaskRangeOverride: 0
+    - _CoverageColorOverride: 0
+    - _CoverageDisplacement: 2.91
+    - _CoverageDisplacementOffset: 0.256
+    - _CoverageDisplacementOffsetOverride: 0
+    - _CoverageDisplacementOverride: 1
+    - _CoverageLeakReduction: 0.166
+    - _CoverageLeakReductionOverride: 0
+    - _CoverageMicroRelief: 0.05
+    - _CoverageMicroReliefOverride: 0
+    - _CoverageNormalScale0: 1
+    - _CoverageNormalScale0Override: 0
+    - _CoverageNormalsOverlay: 0.75
+    - _CoverageNormalsOverlayOverride: 0
+    - _CoverageOverride: 0
+    - _CoverageSmoothnessContrast: 0.1
+    - _CoverageSmoothnessContrastOverride: 0
+    - _CoverageTex0Override: 0
+    - _CoverageTiling: 0.15
+    - _CoverageTilingOverride: 0
+    - _CullMode: 2
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _Displacement: 1
+    - _DisplacementOverride: 1
+    - _DistanceFadeFalloff: 50
+    - _DistanceFadeFalloffOverride: 0
+    - _DistanceFadeStart: 1000
+    - _DistanceFadeStartOverride: 0
+    - _DistortionAmount: 0.002
+    - _DistortionAmountOverride: 0
+    - _DistortionTiling: 2
+    - _DistortionTilingOverride: 0
+    - _Drips: 1
+    - _DripsIntensity: 1
+    - _DripsIntensityOverride: 0
+    - _DripsOverride: 0
+    - _DripsSpeed: 0.2
+    - _DripsSpeedOverride: 0
+    - _DripsTilingOverride: 0
+    - _DstBlend: 0
+    - _Emission: 0
+    - _EmissionMasking: 0.98
+    - _EmissionMaskingOverride: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HeightMap0Contrast: 0.2
+    - _HeightMap0ContrastOverride: 0
+    - _LocalSparkleTiling: 1
+    - _LocalSparkleTilingOverride: 0
+    - _MapID: 0
+    - _MaskCoverageByAlpha: 1
+    - _MaskCoverageByAlphaOverride: 0
+    - _Metallic: 0
+    - _MicroReliefFadeDistance: 2
+    - _MicroReliefFadeOverride: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _OcclusionTextureChannel: 0
+    - _PaintableCoverage: 0
+    - _PaintableCoverageOverride: 0
+    - _Parallax: 0.02
+    - _PrecipitationDirOffset: 0
+    - _PrecipitationDirOffsetOverride: 0
+    - _PrecipitationDirRangeOverride: 0
+    - _PuddlesAmount: 1
+    - _PuddlesAmountOverride: 0
+    - _PuddlesBlendContrast: 0
+    - _PuddlesBlendContrastOverride: 0
+    - _PuddlesBlendStrength: 1
+    - _PuddlesBlendStrengthOverride: 0
+    - _PuddlesMult: 0.8
+    - _PuddlesMultOverride: 0
+    - _PuddlesRangeOverride: 0
+    - _PuddlesSlope: 0.005
+    - _PuddlesSlopeOverride: 0
+    - _PuddlesTiling: 0.5
+    - _PuddlesTilingOverride: 0
+    - _Ripples: 1
+    - _RipplesAmount: 4
+    - _RipplesAmountOverride: 0
+    - _RipplesFPS: 30
+    - _RipplesFPSOverride: 0
+    - _RipplesFramesCount: 64
+    - _RipplesFramesCountOverride: 0
+    - _RipplesIntensity: 0.5
+    - _RipplesIntensityOverride: 0
+    - _RipplesOverride: 0
+    - _RipplesTiling: 0.65
+    - _RipplesTilingOverride: 0
+    - _SSS_intensity: 1
+    - _SSS_intensityOverride: 0
+    - _ScreenSpaceSparklesTiling: 2
+    - _ScreenSpaceSparklesTilingOverride: 0
+    - _SmoothnessTextureChannel: 1
+    - _Sparkle: 1
+    - _SparkleBrightnessRT: 4
+    - _SparkleBrightnessRTOverride: 0
+    - _SparkleDistFalloff: 50
+    - _SparkleDistFalloffOverride: 0
+    - _SparkleOverride: 0
+    - _SparkleTexLS: 1
+    - _SparkleTexLSOverride: 0
+    - _SparkleTexOverride: 0
+    - _SparkleTexSS: 1
+    - _SparkleTexSSOverride: 0
+    - _SparklesAmount: 0.75
+    - _SparklesAmountOverride: 0
+    - _SparklesBrightness: 20
+    - _SparklesBrightnessOverride: 0
+    - _SparklesHighlightMaskExpansion: 0.95
+    - _SparklesHighlightMaskExpansionOverride: 0
+    - _SparklesLightmapMaskPower: 4.5
+    - _SparklesLightmapMaskPowerOverride: 0
+    - _SpecularHighlights: 1
+    - _SpotsAmount: 0.99
+    - _SpotsAmountOverride: 0
+    - _SpotsIntensity: 5
+    - _SpotsIntensityOverride: 0
+    - _SrcBlend: 1
+    - _Sss: 0
+    - _SssOverride: 0
+    - _Stochastic: 0
+    - _StochasticOverride: 0
+    - _TessEdgeL: 5
+    - _TessEdgeLOverride: 0
+    - _TessFactorSnow: 0
+    - _TessFactorSnowOverride: 0
+    - _TessMaxDisp: 0.35
+    - _TessMaxDispOverride: 0
+    - _TessSnowdriftRangeOverride: 0
+    - _Tessellation: 0
+    - _TessellationOverride: 0
+    - _TilingMultiplier: 1
+    - _TraceDetail: 1
+    - _TraceDetailIntensity: 0.25
+    - _TraceDetailIntensityOverride: 0
+    - _TraceDetailNormalScale: 1
+    - _TraceDetailNormalScaleOverride: 0
+    - _TraceDetailOverride: 0
+    - _TraceDetailTexOverride: 0
+    - _TraceDetailTiling: 1
+    - _TraceDetailTilingOverride: 0
+    - _Traces: 0
+    - _TracesBlendFactor: 0.5
+    - _TracesBlendFactorOverride: 0
+    - _TracesColorBlendRangeOverride: 0
+    - _TracesColorOverride: 0
+    - _TracesNormalScale: 0.8
+    - _TracesNormalScaleOverride: 0
+    - _TracesOverride: 0
+    - _UVSec: 0
+    - _UseAveragedNormals: 0
+    - _UseAveragedNormalsOverride: 0
+    - _UseBlueNoiseDither: 0
+    - _UseEmissionMap: 0
+    - _UseGlossMap: 0
+    - _WetColorOverride: 0
+    - _WetnessAmount: 0.3
+    - _WetnessAmountOverride: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CoverageColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DripsTiling: {r: 2, g: 1, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _PrecipitationDirRange: {r: 0, g: 1, b: 0, a: 0}
+    - _PuddlesRange: {r: 0.5, g: 1, b: 0, a: 0}
+    - _TessSnowdriftRange: {r: 0.63, g: 0.775, b: 0, a: 0}
+    - _TracesColor: {r: 0.1, g: 0.25, b: 0.4, a: 1}
+    - _TracesColorBlendRange: {r: 0, g: 1, b: 0, a: 0}
+    - _WetColor: {r: 0.25, g: 0.3, b: 0.45, a: 1}
+  m_BuildTextureStacks: []

@@ -1,0 +1,326 @@
+#pragma kernel ConvertLocalToWorld
+#pragma kernel ConvertLocalToScreen
+#pragma kernel FillVertexColors
+#pragma kernel GradientFillVertexColors
+#pragma kernel BrushPaintVertexColors
+
+RWStructuredBuffer<float3> vPositionsBufferWS;
+RWStructuredBuffer<float3> vPositionsBufferSS;
+int vCount;
+
+float4x4 localToWorldMatrix;
+float4x4 viewProjMatrix;
+float4x4 depthCamMatrix;
+float2 cameraPixelSize;
+//int channelMask[4];
+float3 gradientStartPoint;
+float3 gradientEndPoint;
+float3 gradientAxis;
+float3 camForward;
+float targetVal;
+float2 targetValMinMax;
+float opacity;
+float nDevThreshold;
+float cullingBias;
+float brushSize;
+float4 fillColor;
+float3 brushPosition;
+bool clampGradientStart;
+bool clampGradientEnd;
+Texture2D<float4> gradientTex;
+Texture2D<float4> brush;
+Texture2D<float4> depth;
+SamplerState linearClampSampler;
+
+int maskR;
+int maskG;
+int maskB;
+int maskA;
+
+bool splatMode;
+
+struct SourceVertex
+{
+    float3 pos;
+    float3 posSS;
+    float3 normal;
+    float4 color;
+};
+
+StructuredBuffer<SourceVertex> SourceVertices;
+
+struct CalculatedVertex
+{
+    float3 pos;
+    float3 posSS;
+    float3 normal;
+    float4 color;
+};
+
+RWStructuredBuffer<CalculatedVertex> CalculatedVertices;
+
+float inverseLerp(float from, float to, float value)
+{
+    return (value - from) / (to - from);
+}
+
+float Mask(float3 vertPosWS)
+{
+    if (cullingBias == -100) return 1;
+    
+    float4 mean = mul(depthCamMatrix, float4(vertPosWS, 1));
+    mean = mean / mean.w;
+    float2 uv = (mean.xy * 0.5) + 0.5;
+    uv.y = 1 - uv.y; 
+    float sampledDepth = depth.SampleLevel(linearClampSampler, uv, 0).x;
+    
+    float mask = mean.z + cullingBias <= sampledDepth ? 0 : 1;
+    
+    return mask;
+}
+
+float CalculateChannel(float channelValue, float targetVal, float toolChannelColor, float opacity)
+{
+    float c = channelValue;
+    float finalBrush = toolChannelColor * opacity;
+
+    c += finalBrush;
+
+    c = clamp(c, 0.0001f, targetVal);
+    c = lerp(channelValue, c, opacity < 0 ? toolChannelColor * 0.1f : finalBrush);
+    
+    return c;
+}
+
+float CalculateChannel(float channelValue, float2 targetValMinMax, float toolChannelColor, float opacity, bool linearErase = true)
+{
+    float eraseMultiplier = linearErase ? 1 : abs(opacity);
+    float c = channelValue;
+    float finalBrush = toolChannelColor * opacity;
+
+    c += finalBrush;
+    c = clamp(c, targetValMinMax.x + 0.0001f, targetValMinMax.y);
+    c = lerp(channelValue, c, opacity < 0 ? toolChannelColor * eraseMultiplier : finalBrush);
+    
+    return c;
+}
+
+CalculatedVertex Fill(SourceVertex source)
+{
+    CalculatedVertex output = (CalculatedVertex) 0;
+
+    output.color.r = maskR == 1 ? fillColor.r : source.color.r;
+
+    if(splatMode)
+    {
+        if(maskR == 0)
+        {
+            output.color.g = maskG == 1 ? fillColor.g : -fillColor.g;
+            output.color.b = maskB == 1 ? fillColor.b : -fillColor.b;
+            output.color.a = maskA == 1 ? fillColor.a : -fillColor.a;
+        }
+        else
+        {
+            output.color.g = maskG == 1 ? fillColor.g : source.color.g;
+            output.color.b = maskB == 1 ? fillColor.b : source.color.b;
+            output.color.a = maskA == 1 ? fillColor.a : source.color.a;
+        }
+    }
+    else
+    {
+        output.color.g = maskG == 1 ? fillColor.g : source.color.g;
+        output.color.b = maskB == 1 ? fillColor.b : source.color.b;
+        output.color.a = maskA == 1 ? fillColor.a : source.color.a;
+    }
+
+    output.color = saturate(output.color);
+
+    return output;
+}
+
+CalculatedVertex GradientFill(SourceVertex source)
+{
+    CalculatedVertex output = (CalculatedVertex)0;
+    
+    output.color = source.color;
+    //output.pos = source.pos;
+    
+    float dist = dot(source.posSS - gradientEndPoint, gradientAxis);
+    dist /= distance(gradientStartPoint, gradientEndPoint);
+    dist += 1;
+
+    if (dot(source.normal, -camForward) > nDevThreshold)
+    {
+        float r, g, b, a;
+    
+        r = source.color.r;
+        g = source.color.g;
+        b = source.color.b;
+        a = source.color.a;
+        
+        float depthMask = Mask(source.pos);
+        
+        if (dist > 0 && dist < 1)
+        {
+            float4 sampledColor = gradientTex.SampleLevel(linearClampSampler, float2(dist, 0), 0);
+   
+            if (maskR == 1) r = CalculateChannel(r, targetValMinMax, sampledColor.r, opacity * depthMask, false);
+            if (maskG == 1) g = CalculateChannel(g, targetValMinMax, sampledColor.g, opacity * depthMask, false);
+            if (maskB == 1) b = CalculateChannel(b, targetValMinMax, sampledColor.b, opacity * depthMask, false);
+            if (maskA == 1) a = CalculateChannel(a, targetValMinMax, sampledColor.a, opacity * depthMask, false);
+        }
+        else if (dist < 0)
+        {
+        //fill with gradient start color
+            if (!clampGradientStart)
+            {
+                float4 sampledColor = gradientTex.SampleLevel(linearClampSampler, float2(0, 0), 0);
+                
+                if (maskR == 1) r = CalculateChannel(r, targetValMinMax, sampledColor.r, opacity * depthMask, false);
+                if (maskG == 1) g = CalculateChannel(g, targetValMinMax, sampledColor.g, opacity * depthMask, false);
+                if (maskB == 1) b = CalculateChannel(b, targetValMinMax, sampledColor.b, opacity * depthMask, false);
+                if (maskA == 1) a = CalculateChannel(a, targetValMinMax, sampledColor.a, opacity * depthMask, false);
+            }
+        }
+        else if (dist > 1)
+        {
+        //fill with gradient end color
+            if (!clampGradientEnd)
+            {
+                float4 sampledColor = gradientTex.SampleLevel(linearClampSampler, float2(1, 0), 0);
+                
+                if (maskR == 1) r = CalculateChannel(r, targetValMinMax, sampledColor.r, opacity * depthMask, false);
+                if (maskG == 1) g = CalculateChannel(g, targetValMinMax, sampledColor.g, opacity * depthMask, false);
+                if (maskB == 1) b = CalculateChannel(b, targetValMinMax, sampledColor.b, opacity * depthMask, false);
+                if (maskA == 1) a = CalculateChannel(a, targetValMinMax, sampledColor.a, opacity * depthMask, false);
+            }
+        }
+        
+        output.color = float4(r, g, b, a);
+    }
+
+    return output;
+}
+
+CalculatedVertex BrushPaint(SourceVertex source)
+{
+    CalculatedVertex output = (CalculatedVertex) 0;
+    
+    output.color = source.color;
+    
+    float dist = distance(source.pos, brushPosition);
+    
+    if (dot(source.normal, -camForward) > nDevThreshold)
+    {
+        if (dist < brushSize * 0.5f)
+        {
+            float t = inverseLerp(0, brushSize * 0.5f, dist);
+            
+            float r, g, b, a;
+    
+            r = source.color.r;
+            g = source.color.g;
+            b = source.color.b;
+            a = source.color.a;
+            
+            float sampledBrush = brush.SampleLevel(linearClampSampler, float2(t, 0), 0).r;
+            float depthMask = Mask(source.pos);
+
+            float op = opacity * depthMask;
+
+            if (maskR == 1) r = CalculateChannel(r, targetValMinMax, sampledBrush, opacity);
+ 
+            if(splatMode)
+            {
+                if(maskR == 0)
+                {
+                    g = CalculateChannel(g, targetValMinMax, sampledBrush, maskG == 1 ? opacity : -opacity);
+                    b = CalculateChannel(b, targetValMinMax, sampledBrush, maskB == 1 ? opacity : -opacity);
+                    a = CalculateChannel(a, targetValMinMax, sampledBrush, maskA == 1 ? opacity : -opacity);
+                }
+            }
+            else
+            {
+                if (maskG == 1) g = CalculateChannel(g, targetValMinMax, sampledBrush, opacity);
+                if (maskB == 1) b = CalculateChannel(b, targetValMinMax, sampledBrush, opacity);
+                if (maskA == 1) a = CalculateChannel(a, targetValMinMax, sampledBrush, opacity);
+            }
+ 
+            output.color = float4(r, g, b, a);
+        }
+    }
+
+    return output;
+}
+
+
+CalculatedVertex LocalToScreen(SourceVertex source)
+{
+    CalculatedVertex output = (CalculatedVertex) 0;
+    
+    float4 wp = mul(localToWorldMatrix, float4(source.pos, 1));
+    float4 sp = mul(viewProjMatrix, wp);
+    
+    float3 finalPos = (float3) (sp.xyz / sp.w);
+    
+    finalPos = float3((finalPos.xy * 0.5 + 0.5) * cameraPixelSize, 0);
+    
+    output.posSS = finalPos;
+    output.pos = source.pos;
+
+    return output;
+}
+
+[numthreads(256,1,1)]
+void ConvertLocalToWorld(uint3 id : SV_DispatchThreadID)
+{
+    if ((int) id.x >= vCount) return;
+    
+    vPositionsBufferWS[id.x] = (float3) mul(localToWorldMatrix, float4(vPositionsBufferWS[id.x], 1));
+}
+
+
+[numthreads(256, 1, 1)]
+void ConvertLocalToScreen(uint3 id : SV_DispatchThreadID)
+{
+    if ((int) id.x >= vCount)
+        return;
+    
+    float4 wp = mul(localToWorldMatrix, float4(vPositionsBufferSS[id.x], 1));
+    float4 sp = mul(viewProjMatrix, wp);
+    
+    float3 finalPos = (float3) (sp.xyz / sp.w);
+    
+    finalPos = float3((finalPos.xy * 0.5 + 0.5) * cameraPixelSize, 0); 
+    
+    vPositionsBufferSS[id.x] = finalPos;
+}
+
+[numthreads(256, 1, 1)]
+void FillVertexColors(uint3 id : SV_DispatchThreadID)
+{
+    if ((int) id.x >= vCount)
+        return;
+    
+    CalculatedVertices[id.x] = Fill(SourceVertices[id.x]);
+}
+
+[numthreads(256, 1, 1)]
+void GradientFillVertexColors(uint3 id : SV_DispatchThreadID)
+{
+    if ((int) id.x >= vCount)
+        return;
+    
+    CalculatedVertices[id.x] = GradientFill(SourceVertices[id.x]);
+}
+
+[numthreads(256, 1, 1)]
+void BrushPaintVertexColors(uint3 id : SV_DispatchThreadID)
+{
+    if ((int) id.x >= vCount)
+        return;
+    
+    CalculatedVertices[id.x] = BrushPaint(SourceVertices[id.x]);
+}
+
+
