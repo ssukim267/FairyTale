@@ -9,8 +9,23 @@ EditorBuildSettings:
     path: Assets/Scenes/DemoScene_Playable_Snow.unity
     guid: c8e95f34867c144859d925764b963f5e
   - enabled: 1
+    path: Assets/Scenes/ch1.unity
+    guid: 66daeb4ac446a4ad7a879029db6f15ff
+  - enabled: 1
+    path: Assets/Scenes/ch2_beforegame.unity
+    guid: 3d93d7860992f7349962c3eec3ed373c
+  - enabled: 1
+    path: Assets/Scenes/ch2_game.unity
+    guid: 78274829c4331094ca080de94d55fdfc
+  - enabled: 1
     path: Assets/Scenes/ch3_beforegame.unity
     guid: f2fbb1b76ec9a4c4f8ce041af89e9763
+  - enabled: 1
+    path: Assets/Scenes/ch3_game.unity
+    guid: 04c33b6a49f07b447ae0161dea460ec4
+  - enabled: 1
+    path: Assets/Scenes/ch3_aftergame.unity
+    guid: ebaca832f40e2e0489c22142030ece2e
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: a2db670446fcdb746a7ebb4c0f12c8b9, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 5d817e50b5fd9bf4dbb157e40cfb64a3, type: 2}
