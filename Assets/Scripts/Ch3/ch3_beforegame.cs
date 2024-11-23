@@ -27,7 +27,6 @@ public class ch3_beforegame : MonoBehaviour
 
         yield return StartCoroutine(PlayDialogue("지우야, 좋은 아침이야. 오늘따라 햇빛이 세서 내가 녹을 것 같아."));
         yield return StartCoroutine(PlayDialogue("나를 도와줄 수 있는 도구를 그려줄 수 있어? 게임 시작 버튼을 눌러줘!"));
-        yield return StartCoroutine(PlayDialogue("게임 시작 버튼을 눌러줘!"));
         targetObject.SetActive(true);
     }
 
